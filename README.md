@@ -1,14 +1,18 @@
-# IframeSplitter
+Iframe Splitter is a simple tool to divide computer screen into multiple sections to be displayed on TV dashboard. The tool is based on great library [angular-split](https://github.com/bertrandg/angular-split) for area resizing by dragging. Configuration data is stored in browsers local storage.
+
+Demo: [https://iframe-splitter.firebaseapp.com](https://iframe-splitter.firebaseapp.com)
+
+## Limitations
+
+Some websites don't allow their content to be rendered in an iframe by sending **X-Frame-Options** header. However, this limitation can sometimes be resolved by using dedicated embedable url. Youtube embedable url example: https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1
+
+## Development
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
@@ -18,10 +22,18 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Hosting
+Project demo is hosted on Google Firebase.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Install firebase tools
+```bash
+npm install -g firebase-tools
+firebase login
+firebase init
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Deployment
+```
+ng build --prod
+firebase deploy
+```

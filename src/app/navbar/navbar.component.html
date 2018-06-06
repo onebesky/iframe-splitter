@@ -1,0 +1,9 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">Iframe Splitter</a>
+
+  <form class="form-inline my-2 my-lg-0" (ngSubmit)="storageService.save()">
+    <button *ngIf="storageService.isInEditMode" class="btn btn-outline-success my-2 my-sm-0 mx-2" type="submit">Save</button>
+    <button *ngIf="!storageService.isInEditMode" class="btn btn-outline-primary my-2 my-sm-0 mx-2" (click)="storageService.openEditMode()" type="button">Edit</button>
+    <button *ngIf="!storageService.isInEditMode" class="btn btn-outline-primary my-2 my-sm-0 mx-2" (click)="fullscreenService.goFullScreen()" type="button">Fullscreen</button>
+  </form>
+</nav>

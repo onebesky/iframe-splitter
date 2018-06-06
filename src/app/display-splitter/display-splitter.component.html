@@ -1,0 +1,17 @@
+<div class="display-container">
+  <!-- Content  -->
+  <div class="centered-content container" *ngIf="config.isContent">
+    <div *ngIf="!isValidUrl(config.iframeTarget)">{{config.iframeTarget}}</div>
+    <iframe *ngIf="targetUrl && isValidUrl(config.iframeTarget)" [src]="targetUrl"  width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <!-- Splitter -->
+  <div *ngIf="!config.isContent" class="split-container">
+    <split [direction]="config.direction" gutterSize="10" gutterColor="#ffffff" disabled=true>
+      <ng-template ngFor let-area [ngForOf]="config.nodes" let-index="index">
+        <split-area [size]="area.size">
+          <app-display-splitter [config]="area"></app-display-splitter>
+        </split-area>
+      </ng-template>
+    </split>
+  </div>
+</div>

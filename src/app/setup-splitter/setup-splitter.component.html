@@ -1,0 +1,27 @@
+<div class="setup-container">
+  <!-- Content Setup -->
+  <div class="centered-content container" *ngIf="config.isContent">
+    <form>
+      <div class="form-group row">
+          <button class="btn btn btn-outline-dark" (click)="split('horizontal')"><fa name="arrows-h"></fa> split horizontal</button>
+          <button class="btn btn btn-outline-dark" (click)="split('vertical')"><fa name="arrows-v"></fa> split vertical</button>
+          <button *ngIf="parent" class="btn btn btn-outline-danger" (click)="remove()"><fa name="times-circle"></fa> remove</button>
+      </div>
+      <div class="form-group row">
+
+        <input name="iframeTarget" class="form-control form-control-lg" type="text" [(ngModel)]="config.iframeTarget" placeholder="target url" />
+
+      </div>
+    </form>
+  </div>
+  <!-- Splitter -->
+  <div *ngIf="!config.isContent" class="split-container">
+    <split [direction]="config.direction" gutterSize="10" gutterColor="#ffffff" (dragEnd)="onDragEnd($event)">
+      <ng-template ngFor let-area [ngForOf]="config.nodes" let-index="index">
+        <split-area [size]="area.size">
+          <app-setup-splitter [config]="area" [parent]="this"></app-setup-splitter>
+        </split-area>
+      </ng-template>
+    </split>
+  </div>
+</div>
