@@ -1,17 +1,14 @@
-<div class="display-container">
-  <!-- Content  -->
-  <div class="centered-content container" *ngIf="config.isContent">
-    <div *ngIf="!isValidUrl(config.iframeTarget)">{{config.iframeTarget}}</div>
-    <iframe *ngIf="targetUrl && isValidUrl(config.iframeTarget)" [src]="targetUrl"  width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <!-- Splitter -->
-  <div *ngIf="!config.isContent" class="split-container">
-    <split [direction]="config.direction" gutterSize="10" gutterColor="#ffffff" disabled=true>
-      <ng-template ngFor let-area [ngForOf]="config.nodes" let-index="index">
-        <split-area [size]="area.size">
-          <app-display-splitter [config]="area"></app-display-splitter>
-        </split-area>
-      </ng-template>
-    </split>
-  </div>
+<!-- External Site -->
+<iframe #contentIframe [ngStyle]="getElStyle()" class="abs-area" *ngIf="config.isContent && targetUrl && isValidUrl(config.iframeTarget)"
+  [src]="targetUrl" frameborder="0" allowfullscreen></iframe>
+
+<!-- Static Text -->
+<div [ngStyle]="getElStyle()" class="abs-area centered-content" *ngIf="config.isContent && !isValidUrl(config.iframeTarget)">{{config.iframeTarget}}</div>
+
+<!-- Split -->
+<div *ngIf="!config.isContent">
+  <app-display-splitter [top]="splits()[0].top" [left]=splits()[0].left [width]="splits()[0].width" [height]="splits()[0].height"
+    [config]="config.nodes[0]"></app-display-splitter>
+  <app-display-splitter [top]="splits()[1].top" [left]=splits()[1].left [width]="splits()[1].width" [height]="splits()[1].height"
+    [config]="config.nodes[1]"></app-display-splitter>
 </div>

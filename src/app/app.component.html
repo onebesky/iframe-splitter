@@ -1,9 +1,8 @@
-
-<app-navbar></app-navbar>
+<app-navbar>
+</app-navbar>
 <div *ngIf="storageService.isInEditMode" class="full-screen">
   <app-setup-splitter [config]="storageService.getConfig() | async"></app-setup-splitter>
 </div>
 <div *ngIf="!storageService.isInEditMode" class="full-screen">
-  <app-display-splitter id="main-display" [config]="storageService.getConfig() | async"></app-display-splitter>
+  <app-display-splitter top=0 left=0 [width]="width" [height]="height" id="main-display" [config]="storageService.getConfig() | async"></app-display-splitter>
 </div>
-

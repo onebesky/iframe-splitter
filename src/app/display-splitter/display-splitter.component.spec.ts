@@ -86,4 +86,66 @@ describe('DisplaySplitterComponent', () => {
       });
     });
   });
+
+  describe('#getElStyle', () => {
+    beforeEach(() => {
+      component.config.scale = 50;
+      component.width = 100;
+      component.height = 100;
+      component.left = 0;
+      component.top = 0;
+    });
+    it('should calculate dimensiosn for content iframe', () => {
+      const res = component.getElStyle();
+      expect(res).toEqual({
+        transform: 'scale(0.5)',
+        top: '0px',
+        left: '0px',
+        width: '200px',
+        height: '200px'
+      });
+    });
+  });
+
+  describe('#splits', () => {
+    beforeEach(() => {
+      component.width = 100;
+      component.height = 100;
+      component.left = 0;
+      component.top = 0;
+      component.config.size = 60;
+    });
+    it('should calculate correct split area dimensions on vertical split', () => {
+      component.config.direction = 'vertical';
+      const res = component.splits();
+      expect(res[0]).toEqual({
+        top: 0,
+        left: 0,
+        width: 100,
+        height: 60
+      });
+      expect(res[1]).toEqual({
+        top: 60,
+        left: 0,
+        width: 100,
+        height: 40
+      });
+    });
+    it('should calculate correct split area dimensions on horizontal split', () => {
+      component.config.direction = 'horizontal';
+      const res = component.splits();
+      expect(res[0]).toEqual({
+        top: 0,
+        left: 0,
+        width: 60,
+        height: 100
+      });
+      expect(res[1]).toEqual({
+        top: 0,
+        left: 60,
+        width: 40,
+        height: 100
+      });
+    });
+  });
 });

@@ -21,13 +21,9 @@
 }
 
 .split-container {
-  width: 100%;
+    width: 100%;
 }
 
 .btn {
-  margin: 6px;
-}
-
-input {
-  margin: 6px;
+    margin: 6px;
 }

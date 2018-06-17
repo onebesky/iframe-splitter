@@ -11,6 +11,8 @@ export interface ISplitterConfig {
   size: number;
   index: number;
   iframeTarget: string;
+  scale: number;
+  autoRefresh: number;
   nodes: ISplitterConfig[];
 }
 
@@ -24,6 +26,8 @@ export class StorageService {
     direction: '',
     size: 50,
     index: 0,
+    scale: 100,
+    autoRefresh: 0,
     iframeTarget: '',
     nodes: []
   };

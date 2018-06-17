@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { StorageService } from './storage-service/storage.service';
 
 @Component({
@@ -7,9 +7,17 @@ import { StorageService } from './storage-service/storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
 
+  public width: number;
+  public height: number;
   constructor(public storageService: StorageService) {
-
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
   }
+
+  @HostListener('window:resize') onResize() {
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+  }
+
 }

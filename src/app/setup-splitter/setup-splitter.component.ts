@@ -41,6 +41,8 @@ export class SetupSplitterComponent implements OnInit, AfterViewInit {
     this.config.nodes[1].index = 1;
 
     this.config.nodes[0].iframeTarget = this.config.iframeTarget;
+    this.config.nodes[0].scale = this.config.scale;
+    this.config.nodes[0].autoRefresh = this.config.autoRefresh;
   }
 
   remove() {
