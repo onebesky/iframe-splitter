@@ -1,44 +1,25 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
-  build-job:
+  build:
     working_directory: ~/repo
     docker:
       - image: circleci/node:8-browsers
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - run: yarn install
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: install-dependencies
+          command: yarn install
       - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      - run: yarn ng build --no-progress
-      - run: yarn ng test --sr --no-progress
+            - ~/.cache/yarn
+            - ./node_modules
+      - run:
+          name: angular-build
+          command: yarn ng -- build --prod --aot --no-progress
+      - run:
+          name: angular-test
+          command: yarn test -- --single-run --no-progress
 
-  deploy-test:
-    working_directory: ~/repo
-    docker:
-      - image: circleci/node:8-browsers
-    steps:
-      - checkout
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
