@@ -1,5 +1,7 @@
 Iframe Splitter is a simple tool to divide computer screen into multiple sections to be displayed on TV dashboard. The tool is based on library [angular-split](https://github.com/bertrandg/angular-split) for area resizing by dragging. Configuration data is stored in browsers local storage.
 
+[![CircleCI](https://circleci.com/gh/onebesky/iframe-splitter.svg?style=svg)](https://circleci.com/gh/onebesky/iframe-splitter)
+
 # Features
 
 * Splits screen in any way
